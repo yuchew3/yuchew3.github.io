@@ -9,16 +9,16 @@
 <body onload='init()'>
 <script>
 	async function init() {
-		const data = await d3.csv('example.csv');
-		// console.log(data);
-		// d3.select("body")
-		//   .selectAll("p")
-		//   .data(data)
-		//   .enter()
-		//   .append('p')
-		// 	  .html(function(d, i) {
-		// 	  	  return 'name: ' + d.Name;
-		// 	  });
+		const data = await d3.csv('data.csv');
+		console.log(data);
+		d3.select("body")
+		  .selectAll("p")
+		  .data(data)
+		  .enter()
+		  .append('p')
+			  .html(function(d, i) {
+			  	  return 'name: ' + d.Name;
+			  });
 	};
 </script>
 </body>
