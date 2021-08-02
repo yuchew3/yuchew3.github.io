@@ -46,6 +46,20 @@
   padding: 20px;
 }
 
+.main-content {
+	position: fixed;
+ 	top: 0;
+ 	bottom: 0;
+ 	left: 50px;
+ 	right: 50px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #f1f1f1;
+	width: 75%;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .content img {
 	width: 50%;
 	height: 50%;
@@ -58,4 +72,23 @@
   background-color: #555555;
   color: white;
   border: 2px solid ##e7e7e7;
+}
+
+.filters img {
+	height: 50px;
+	width: 50px;
+}
+
+.person {
+	display: inline-block;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.person p {
+	text-align: center;
+}
+
+.characters {
+	margin-top: 50px;
 }

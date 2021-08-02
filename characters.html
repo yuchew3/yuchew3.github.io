@@ -6,19 +6,130 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload='init()'>
+<body onload='init()' style="background-color:#c4aead;">
+	<div class="main-content">
+	<div class="filters">
+		<div class="types">
+			
+		</div>
+		<div class="weapons">
+			
+		</div>
+	</div>
+
+	<div class='characters'>
+		
+	</div>
+	
+</div>
 <script>
+	const types = ['Anemo', 'Cryo', 'Electro', 'Dentro', 'Geo', 'Hydro', 'Pyro'];
+	const weapons = ['Bow', 'Catalyst', 'Claymore', 'Polearm', 'Sword'];
+	var type_filter = [];
+	var weapon_filter = [];
+	var data = [];
+
 	async function init() {
-		const data = await d3.csv('data.csv');
-		console.log(data);
-		d3.select("body")
-		  .selectAll("p")
-		  .data(data)
-		  .enter()
-		  .append('p')
-			  .html(function(d, i) {
-			  	  return 'name: ' + d.Name;
-			  });
-	};
+		data = await d3.csv('https://yuchew3.github.io/data.csv');
+
+		d3.select('.types').selectAll('img').data(types)
+		.enter()
+		.append('img')
+		.attr('src', function(d) { return 'images/' + d + '.png'; })
+		.on('click', function(d) {
+			filter(d, true, data);
+		});
+
+		d3.select('.weapons').selectAll('img').data(weapons)
+		.enter()
+		.append('img')
+		.attr('src', function(d) { return 'images/' + d + '.png'; })
+		.on('click', function(d) {
+			filter(d, false, data)
+		});
+
+		var container = d3.select('.characters').selectAll('.person').data(data)
+		.enter()
+		.append('div')
+		.attr('class', 'person')
+
+		container.selectAll('img').data(function(d) {return [d];})
+		.enter()
+		.append('img')
+		.attr('src', function(d) { return 'images/' + d.Name + '.png';})
+
+		container.selectAll('p').data(function(d) {return [d];})
+		.enter()
+		.append('p')
+		.text(function(d) {return d.Name;})
+	}
+
+	function filter(filter, isType, data) {
+		d3.select('.characters').selectAll('.person').remove();
+
+		if (isType) {
+			var index = type_filter.indexOf(filter);
+			if (index > -1) {
+				type_filter.splice(index, 1);
+			} else {
+				type_filter.push(filter)
+			}
+		} else {
+			var index = weapon_filter.indexOf(filter);
+			if (index > -1) {
+				weapon_filter.splice(index, 1)
+			} else {
+				weapon_filter.push(filter)
+			}
+		}
+
+		d3.select('.types').selectAll('img')
+		.attr('border', function(d) {
+			if (type_filter.includes(d)) {
+				return '2px solid black';
+			} else {
+				return '0';
+			}
+		})
+
+		d3.select('.weapons').selectAll('img')
+		.attr('border', function(d) {
+			if (weapon_filter.includes(d)) {
+				return '2px solid black';
+			} else {
+				return '0';
+			}
+		})
+
+		console.log(type_filter);
+		console.log(weapon_filter);
+
+		var filteredData = data;
+		if (type_filter.length > 0) {
+			filteredData = filteredData.filter(a => type_filter.includes(a.Type));
+		}
+		if (weapon_filter.length > 0) {
+			filteredData = filteredData.filter(a => weapon_filter.includes(a.Weapon));
+		}
+		console.log(filteredData);
+
+		var container = d3.select('.characters').selectAll('.person').data(filteredData)
+		.enter()
+		.append('div')
+		.attr('class', 'person')
+
+		container.selectAll('img').data(function(d) {return [d];})
+		.enter()
+		.append('img')
+		.attr('src', function(d) { return 'images/' + d.Name + '.png';})
+
+		container.selectAll('p').data(function(d) {return [d];})
+		.enter()
+		.append('p')
+		.text(function(d) {return d.Name;})
+	}
+
 </script>
+	
+</div>
 </body>
