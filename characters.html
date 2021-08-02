@@ -114,6 +114,7 @@
 		.enter()
 		.append('img')
 		.attr('src', function(d) { return 'images/' + d + '.png'; })
+		.attr('title', function(d) { return d; })
 		.on('click', function(d) {
 			filter(d, true, data);
 		});
@@ -122,6 +123,7 @@
 		.enter()
 		.append('img')
 		.attr('src', function(d) { return 'images/' + d + '.png'; })
+		.attr('title', function(d) { return d; })
 		.on('click', function(d) {
 			filter(d, false, data)
 		});
