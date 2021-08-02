@@ -1,4 +1,38 @@
-Name,Type,Weapon,Strength
-Ayaka,Cryo,Sword,5
-Traveler (Electro),Electro,Sword,1
-Albedo,Geo,Sword,4
+Name,Type,Weapon
+Ayaka,Cryo,Sword
+Traveler (Electro),Electro,Sword
+Albedo,Geo,Sword
+Amber,Pyro,Bow
+Barbara,Hydro,Catalyst
+Beidou,Electro,Claymore
+Bennett,Pyro,Sword
+Chongyun,Cryo,Claymore
+Diluc,Pyro,Claymore
+Diona,Cryo,Bow
+Eula,Cryo,Claymore
+Fischl,Electro,Bow
+Ganyu,Cryo,Bow
+Hu Tao,Pyro,Polearm
+Jean,Anemo,Sword
+Kaeya,Cryo,Sword
+Kazuha,Anemo,Sword
+Keqing,Electro,Sword
+Klee,Pyro,Catalyst
+Lisa,Electro,Catalyst
+Mona,Hydro,Catalyst
+Ningguang,Geo,Catalyst
+Noelle,Geo,Claymore
+Qiqi,Cryo,Sword
+Razor,Electro,Claymore
+Rosaria,Cryo,Polearm
+Sucrose,Anemo,Catalyst
+Tartaglia,Hydro,Bow
+Traveler (Anemo),Anemo,Sword
+Traveler (Geo),Geo,Sword
+Venti,Anemo,Bow
+Xiangling,Pyro,Polearm
+Xiao,Anemo,Polearm
+Xingqiu,Hydro,Sword
+Xinyan,Pyro,Claymore
+Yanfei,Pyro,Catalyst
+Zhongli,Geo,Polearm

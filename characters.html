@@ -8,19 +8,58 @@
 
 <body onload='init()' style="background-color:#c4aead;">
 	<div class="main-content">
-	<div class="filters">
-		<div class="types">
-			
+		<div class="filters">
+			<div class="types" id="types">
+				
+			</div>
+			<div class="weapons">
+				
+			</div>
 		</div>
-		<div class="weapons">
+
+		<div class='characters'>
 			
 		</div>
 	</div>
 
-	<div class='characters'>
-		
+	<div id="firstModal" class="modal">
+	  <div class="modal-content">
+	  	<p style="text-align: center"> 1 of 4</p>
+	  	<p>In Genshin Impact, you'll be able to interact with many characters. Each for them have different powers and use different weapons. Try to find one you like the most!</p>
+	    <button id='firstBtn' onclick="openSecond()">Next</button>
+	  </div>
 	</div>
-	
+
+	<div id="secondModal" class="modal">
+		<div class="modal-content">
+			<p style="text-align: center"> 2 of 4</p>
+			<p>First, let's learn about power. There are seven powers in Genshin Impact. Each power gives you an elemental magic. Elemental reactions sometimes can improve you attach a lot.</p>
+			<div class="types">
+				
+			</div>
+			<button id='secondBtn' onclick="openThird()">Next</button>
+		</div>
+	</div>
+
+	<div id="thirdModal" class="modal">
+		<div class="modal-content">
+			<p style="text-align: center"> 3 of 4</p>
+			<p>Characters may use different weapons. The weapons give them different types of attach. For example, using a bow you could attach enemies from a long distance. Try to select your favorite weapon!</p>
+			<div class="weapons">
+				
+			</div>
+			<button id="thirdBtn" onclick="openLast()">Next</button>
+		</div>
+	</div>
+
+	<div id="lastModal" class="modal">
+		<div class="modal-content">
+			<p style="text-align: center"> 4 of 4</p>
+			<p>Now you know about different powers and weapons. <b>Try to CLICK on the power and weapons</b> and find out which characters are using your favorite power and weapon!</p>		
+			<button id="lastBtn" onclick="closeLast()">Start Exploring</button>
+		</div>
+	</div>
+
 </div>
 <script>
 	const types = ['Anemo', 'Cryo', 'Electro', 'Dentro', 'Geo', 'Hydro', 'Pyro'];
@@ -28,6 +67,45 @@
 	var type_filter = [];
 	var weapon_filter = [];
 	var data = [];
+
+	var modal = document.getElementById("firstModal");
+	modal.style.display = "block";
+
+	function openSecond() {
+		var first = document.getElementById("firstModal");
+		first.style.display = "none";
+		var second = document.getElementById("secondModal");
+		second.style.display = "block";
+
+		d3.select('#secondModal').select('.types').selectAll('img').data(types)
+		.enter()
+		.append('img')
+		.attr('src', function(d) { return 'images/' + d + '.png'; });
+	}
+
+	function openThird() {
+		var first = document.getElementById("secondModal");
+		first.style.display = "none";
+		var second = document.getElementById("thirdModal");
+		second.style.display = "block";
+
+		d3.select('#thirdModal').select('.weapons').selectAll('img').data(weapons)
+		.enter()
+		.append('img')
+		.attr('src', function(d) { return 'images/' + d + '.png'; });
+	}
+
+	function openLast() {
+		var first = document.getElementById("thirdModal");
+		first.style.display = "none";
+		var second = document.getElementById("lastModal");
+		second.style.display = "block";
+	}
+
+	function closeLast() {
+		var second = document.getElementById("lastModal");
+		second.style.display = "none";
+	}
 
 	async function init() {
 		data = await d3.csv('https://yuchew3.github.io/data.csv');
